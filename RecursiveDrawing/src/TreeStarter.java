@@ -9,13 +9,12 @@ public class TreeStarter extends PApplet{
     
         background(255);
         t.setColor( color(0) );		// set turtle color black
-        t.forward(30); 				// move turtle forward 30
+        //t.forward(30); 				// move turtle forward 30
         
-    	drawTree(t, 1, 200, 30);
+    	drawTree(t, 14, 200, 30);
     }
     
-    public void drawTree(Turtle t, int lvl,float length, 
-    						float angle){
+    public void drawTree(Turtle t, int level, float length, float angle){
     	
     	/* RECURSIVE CASE:
     	 * go forward by length
@@ -27,5 +26,22 @@ public class TreeStarter extends PApplet{
     	 * turn left by angle
     	 * go backwards by length
     	 */
+    	
+    	 if (level == 0) return;
+
+    	 int rand = (int)(1+Math.random()*30);
+    	 int rand2 = (int)(1+Math.random()*120);
+    	 
+		 t.forward(length);
+		 t.turnLeft(angle);
+		 drawTree(t, level-1, (float)(length*0.6), angle+rand);
+		 t.turnRight(2*angle);
+		 drawTree(t, level-1, (float)(length*0.6), angle);
+		 t.turnLeft(angle);
+		 
+		 t.turnLeft(180);
+		 t.forward(length);
+		 t.turnRight(180);
+
     }
 }
